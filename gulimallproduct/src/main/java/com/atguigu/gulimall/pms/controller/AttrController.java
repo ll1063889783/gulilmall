@@ -41,7 +41,7 @@ public class AttrController {
     //@RequiresPermissions("pms:attr:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = attrService.queryPage(params);
-        System.out.println("qqq0.1");
+        System.out.println("qqq0.2");
         return R.ok().put("page", page);
     }
 
