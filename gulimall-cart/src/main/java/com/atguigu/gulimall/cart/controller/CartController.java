@@ -48,7 +48,7 @@ public class CartController {
             //获取登录了的购物车
         }*/
         //获取当前用户的cookie信息
-        //UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
+        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         Cart cart = cartService.getCart();
         model.addAttribute("cart",cart);
         return "cartList";
