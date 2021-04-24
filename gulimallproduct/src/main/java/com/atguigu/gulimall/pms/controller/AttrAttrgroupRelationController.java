@@ -38,7 +38,7 @@ public class AttrAttrgroupRelationController {
     //@RequiresPermissions("pms:attrattrgrouprelation:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = attrAttrgroupRelationService.queryPage(params);
-
+        System.out.println("1111111");
         return R.ok().put("page", page);
     }
 
