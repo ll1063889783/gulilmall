@@ -1,0 +1,94 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+       - id: test_route
+         uri: https://www.baidu.com
+         predicates:
+             - Query=url,baidu
+
+       - id: qq_route1
+         uri: https://www.qq.com
+         predicates:
+             - Query=url,qq
+
+       - id: product_route
+         uri: lb://gulimallproduct
+         predicates:
+             - Path=/api/product/**
+         filters:
+             - RewritePath=/api/product/(?<segment>.*),/$\{segment} #路径重写
+        #积分服务
+       - id: coupon_route
+         uri: lb://gulimall-coupon
+         predicates:
+            - Path=/api/coupon/**
+         filters:
+            - RewritePath=/api/coupon/(?<segment>.*),/$\{segment} #路径重写
+
+
+        - id: ware_route
+         uri: lb://gulimallware
+         predicates:
+           - Path=/api/ware/**
+         filters:
+            - RewritePath=/api/ware/(?<segment>.*),/$\{segment} #路径重写
+
+        - id: member_route
+          uri: lb://gulimallmember
+          predicates:
+           - Path=/api/member/**
+          filters:
+           - RewritePath=/api/member/(?<segment>.*),/$\{segment} #路径重写
+      #第三方上传阿里云路由配置
+       - id: third_party_route
+                uri: lb://gulimallthirdparty
+                predicates:
+                    - Path=/api/thirdparty/** #前端访问路径负载均衡到gulimallthirdparty服务
+                filters:
+                    - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
+       - id: admin_route1
+         uri: lb://renren-fast #lb是负载均衡，后面写的服务名
+         predicates:
+             - Path=/api/**
+         filters:
+             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment} #将前端项目带/api的路径地址重写到项目真实路径
+
+        - id: gulimall_host_route
+          uri: lb://gulimallproduct #lb是负载均衡，后面写的服务名
+          predicates:
+             - Host=gulimall.com,item.gulimall.com
+       #search服务
+       - id: gulimall_search_route
+         uri: lb://gulimallsearch #lb是负载均衡，后面写的服务名
+         predicates:
+             - Host=search.gulimall.com
+       #认证服务
+       - id: gulimall_auth_route
+         uri: lb://gulimall-auth-server #lb是负载均衡，后面写的服务名
+         predicates:
+             - Host=auth.gulimall.com
+       #购物车服务
+       - id: gulimall_cart_route
+         uri: lb://gulimall-cart #lb是负载均衡，后面写的服务名
+         predicates:
+             - Host=cart.gulimall.com
+       #订单服务
+       - id: gulimall_order_route
+         uri: lb://gulimall-order #lb是负载均衡，后面写的服务名
+         predicates:
+             - Host=order.gulimall.com
+
+       #会员服务
+       - id: gulimall_member_route
+         uri: lb://gulimall-member
+         preicates:
+            -Host=member.gulimall.com
+       #秒杀服务
+       - id: gulimall_seckill_route
+         uri: lb://gulimall-seckill
+         preicates:
+           -Host=seckill.gulimall.com
+
+   ##前端项目，加/api的路径会跳转到renren-fast项目，重写前端项目路径会映射到项目真实路径

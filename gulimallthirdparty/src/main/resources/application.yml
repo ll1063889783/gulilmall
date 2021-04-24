@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+    alicloud:
+      access-key: LTAsifdbdmfdfdgdg
+      secret-key: 06xfdsfsdfsdfsdfsdfsdf
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        bucket: gulimall-liliang
+      sms:
+        host: https://smsmsgs.market.alicloudapi.com #邮件的主机地址
+        path: /sms/
+        skin: 1
+        sign: 1
+        appCode: 987hce1234escs783fnsjhf79273 #邮件的appCode
+  application:
+    name: gulimall-third-party
+
+server:
+  port: 30000
+
+

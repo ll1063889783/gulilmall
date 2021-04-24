@@ -11,15 +11,19 @@
 
     <modules>
         <module>gulimallcoupon</module>
-        <module></module>
         <module>gulimallorder</module>
         <module>gulimallproduct</module>
         <module>gulimallware</module>
         <module>gulimallmember</module>
-      <!--  <module>renren-fast</module>
+        <module>renren-fast</module>
         <module>renren-generator</module>
-        <module>gulimall-common</module>-->
+        <module>gulimallcommon</module>
+        <module>gulimallgateway</module>
+        <module>gulimallthirdparty</module>
+        <module>gulimallsearch</module>
     </modules>
+
+
 
 
 
